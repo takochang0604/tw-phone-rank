@@ -119,6 +119,34 @@ body::before {
   color: var(--text-secondary); text-decoration: none;
 }
 .btn-source:hover { border-color: var(--accent-blue); color: var(--text-primary); }
+.btn-edit {
+  padding: 10px 12px; background: var(--bg-glass); border: 1px solid var(--border-glass);
+  color: var(--text-muted); font-size: 0.9rem;
+}
+.btn-edit:hover { border-color: var(--accent-purple); color: var(--text-primary); }
+.btn-save {
+  background: linear-gradient(135deg, #10b981, #059669); color: #fff;
+  padding: 8px 18px; font-size: 0.85rem;
+}
+.btn-cancel {
+  background: var(--bg-glass); border: 1px solid var(--border-glass);
+  color: var(--text-secondary); padding: 8px 18px; font-size: 0.85rem;
+}
+
+/* URL EDITOR */
+.url-editor {
+  display: flex; align-items: center; gap: 10px;
+  padding: 10px 16px; margin-bottom: 24px;
+  background: rgba(139,92,246,0.06); border: 1px solid rgba(139,92,246,0.2);
+  border-radius: var(--radius-sm); animation: fadeInUp 0.2s ease;
+}
+.url-editor label { font-size: 0.85rem; color: var(--text-secondary); white-space: nowrap; }
+.url-editor input {
+  flex: 1; padding: 8px 12px; border-radius: 6px;
+  background: var(--bg-card); border: 1px solid var(--border-glass);
+  color: var(--text-primary); font-family: inherit; font-size: 0.85rem;
+}
+.url-editor input:focus { outline: none; border-color: var(--accent-purple); }
 
 /* GRID */
 .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 32px; }

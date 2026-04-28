@@ -6,6 +6,11 @@
   const monthSelect = document.getElementById('monthSelect');
   const btnExport = document.getElementById('btnExport');
   const btnSource = document.getElementById('btnSource');
+  const btnEditUrl = document.getElementById('btnEditUrl');
+  const urlEditor = document.getElementById('urlEditor');
+  const urlInput = document.getElementById('urlInput');
+  const btnSaveUrl = document.getElementById('btnSaveUrl');
+  const btnCancelUrl = document.getElementById('btnCancelUrl');
   const tbodyAll = document.getElementById('tbodyAll');
   const tbodyAndroid = document.getElementById('tbodyAndroid');
   const brandBars = document.getElementById('brandBars');
@@ -34,13 +39,39 @@
   // ── Initial render ──
   if (sortedData.length > 0) render(sortedData[0].month);
 
+  // ── URL Editor ──
+  btnEditUrl.addEventListener('click', () => {
+    urlInput.value = btnSource.href;
+    urlEditor.style.display = 'flex';
+    urlInput.focus();
+    urlInput.select();
+  });
+  btnCancelUrl.addEventListener('click', () => { urlEditor.style.display = 'none'; });
+  btnSaveUrl.addEventListener('click', () => {
+    const newUrl = urlInput.value.trim();
+    if (!newUrl) return;
+    const month = monthSelect.value;
+    const data = MARKET_DATA.find(d => d.month === month);
+    if (data) {
+      data.sourceUrl = newUrl;
+      btnSource.href = newUrl;
+      // 存到 localStorage，下次開頁面也生效
+      const overrides = JSON.parse(localStorage.getItem('urlOverrides') || '{}');
+      overrides[month] = newUrl;
+      localStorage.setItem('urlOverrides', JSON.stringify(overrides));
+    }
+    urlEditor.style.display = 'none';
+  });
+
   // ── Main render function ──
   function render(month) {
     const data = MARKET_DATA.find(d => d.month === month);
     if (!data) return;
 
-    // Update source link
-    btnSource.href = data.sourceUrl || 'https://www.jyes.com.tw/news.php?act=list&cid=22';
+    // Update source link (check localStorage override first)
+    const overrides = JSON.parse(localStorage.getItem('urlOverrides') || '{}');
+    const url = overrides[month] || data.sourceUrl || 'https://www.jyes.com.tw/news.php?act=list&cid=22';
+    btnSource.href = url;
 
     // Titles
     const [y, m] = month.split('/');

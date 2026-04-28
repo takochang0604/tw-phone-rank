@@ -1411,7 +1411,7 @@ const MARKET_DATA = [
   },
   {
     "month": "2026/03",
-    "sourceUrl": "https://www.jyes.com.tw/news.php?act=view&id=14667",
+    "sourceUrl": "https://www.sogi.com.tw/articles/jyes/6268634",
     "salesTop20": [
       {
         "rank": 1,
