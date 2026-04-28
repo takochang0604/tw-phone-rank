@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="台灣每月手機銷售市占排行，資料來源傑昇通信。可查看 Top 10 銷售排行、Android 排行、品牌市占率，並匯出 Excel。">
+  <title>台灣手機市占排行</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <header class="header">
+      <h1><span class="header-icon"><svg viewBox="0 0 24 24" fill="currentColor" width="36" height="36"><rect x="5" y="1" width="14" height="22" rx="3" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="19" r="1.2" fill="currentColor"/><line x1="9" y1="4" x2="15" y2="4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg></span> 台灣手機市占排行</h1>
+      <p class="subtitle">資料來源：<a href="https://www.jyes.com.tw/news.php?act=list&cid=22" target="_blank">傑昇通信</a> ｜ 全台實體通路銷售資料匯整</p>
+    </header>
+
+    <!-- Controls -->
+    <div class="controls">
+      <label for="monthSelect">📅 選擇月份：</label>
+      <select id="monthSelect"></select>
+      <button class="btn btn-export" id="btnExport" title="匯出 Excel">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 3v4a1 1 0 001 1h4"/><path d="M17 21H7a2 2 0 01-2-2V5a2 2 0 012-2h7l5 5v11a2 2 0 01-2 2z"/><path d="M9 17l3-3 3 3"/><path d="M12 14v-4"/></svg>
+        匯出 Excel
+      </button>
+      <a class="btn btn-source" id="btnSource" href="#" target="_blank">🔗 查看原文</a>
+    </div>
+
+    <!-- Tables Grid -->
+    <div class="grid-2">
+      <!-- All Sales Top 10 -->
+      <div class="card" id="cardAll">
+        <div class="card-header">
+          <div class="icon blue">🏆</div>
+          <h2 id="titleAll">銷售排行 Top 10</h2>
+          <span class="badge" id="badgeAll">全部</span>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th style="width:50px">#</th>
+                <th style="width:80px">品牌</th>
+                <th>型號</th>
+              </tr>
+            </thead>
+            <tbody id="tbodyAll"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Android Top 10 -->
+      <div class="card" id="cardAndroid">
+        <div class="card-header">
+          <div class="icon green">🤖</div>
+          <h2 id="titleAndroid">Android 銷售排行 Top 10</h2>
+          <span class="badge" id="badgeAndroid">Android</span>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th style="width:50px">#</th>
+                <th style="width:80px">品牌</th>
+                <th>型號</th>
+              </tr>
+            </thead>
+            <tbody id="tbodyAndroid"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- Brand Share -->
+    <div class="card" id="cardShare">
+      <div class="card-header">
+        <div class="icon purple">📊</div>
+        <h2 id="titleShare">品牌市占率</h2>
+        <span class="badge" id="badgeShare">市佔</span>
+      </div>
+      <div class="brand-bar-list" id="brandBars"></div>
+    </div>
+
+    <p class="footer-note">
+      ※ 資料每月更新。最新月份：<strong id="latestMonth"></strong>
+    </p>
+  </div>
+
+  <!-- SheetJS for Excel export -->
+  <script src="https://cdn.sheetjs.com/xlsx-0.20.3/package/dist/xlsx.full.min.js"></script>
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
