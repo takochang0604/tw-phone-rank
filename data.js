@@ -1413,168 +1413,38 @@ const MARKET_DATA = [
     "month": "2026/03",
     "sourceUrl": "https://www.sogi.com.tw/articles/jyes/6268634",
     "salesTop20": [
-      {
-        "rank": 1,
-        "brand": "Apple",
-        "model": "iPhone 17 256GB"
-      },
-      {
-        "rank": 2,
-        "brand": "Apple",
-        "model": "iPhone 17 Pro 256GB"
-      },
-      {
-        "rank": 3,
-        "brand": "Apple",
-        "model": "iPhone 17 Pro Max 256GB"
-      },
-      {
-        "rank": 4,
-        "brand": "Samsung",
-        "model": "Galaxy S26 Ultra 12GB/512GB"
-      },
-      {
-        "rank": 5,
-        "brand": "Samsung",
-        "model": "Galaxy A56 5G 12GB/256GB"
-      },
-      {
-        "rank": 6,
-        "brand": "Samsung",
-        "model": "Galaxy A17 6GB/128GB"
-      },
-      {
-        "rank": 7,
-        "brand": "Apple",
-        "model": "iPhone 17e 256GB"
-      },
-      {
-        "rank": 8,
-        "brand": "Apple",
-        "model": "iPhone 17 Pro Max 512GB"
-      },
-      {
-        "rank": 9,
-        "brand": "Apple",
-        "model": "iPhone 17 Pro 512GB"
-      },
-      {
-        "rank": 10,
-        "brand": "Samsung",
-        "model": "Galaxy A56 5G 8GB/256GB"
-      },
-      {
-        "rank": 11,
-        "brand": "OPPO",
-        "model": "A6s 6GB/128GB"
-      },
-      {
-        "rank": 12,
-        "brand": "Samsung",
-        "model": "Galaxy S25 FE 5G 8GB/256GB"
-      },
-      {
-        "rank": 13,
-        "brand": "Samsung",
-        "model": "Galaxy A17 8GB/128GB"
-      },
-      {
-        "rank": 14,
-        "brand": "OPPO",
-        "model": "Reno15 12GB/256GB"
-      },
-      {
-        "rank": 15,
-        "brand": "vivo",
-        "model": "Y29s 5G 6GB/128GB"
-      },
-      {
-        "rank": 16,
-        "brand": "Apple",
-        "model": "iPhone 17 512GB"
-      },
-      {
-        "rank": 17,
-        "brand": "vivo",
-        "model": "V60 12GB/256GB"
-      },
-      {
-        "rank": 18,
-        "brand": "Samsung",
-        "model": "Galaxy S25 Ultra 12GB/256GB"
-      },
-      {
-        "rank": 19,
-        "brand": "OPPO",
-        "model": "Reno15 Pro Max 12GB/512GB"
-      },
-      {
-        "rank": 20,
-        "brand": "Samsung",
-        "model": "Galaxy S25+ 12GB/256GB"
-      }
+      { "rank": 1, "brand": "Apple", "model": "iPhone 17 256GB" },
+      { "rank": 2, "brand": "Apple", "model": "iPhone 17 Pro 256GB" },
+      { "rank": 3, "brand": "Apple", "model": "iPhone 17 Pro Max 256GB" },
+      { "rank": 4, "brand": "Samsung", "model": "Galaxy S26 Ultra 12GB/512GB" },
+      { "rank": 5, "brand": "Samsung", "model": "Galaxy A56 5G 12GB/256GB" },
+      { "rank": 6, "brand": "Samsung", "model": "Galaxy A17 6GB/128GB" },
+      { "rank": 7, "brand": "Apple", "model": "iPhone 17e 256GB" },
+      { "rank": 8, "brand": "Apple", "model": "iPhone 17 Pro Max 512GB" },
+      { "rank": 9, "brand": "Apple", "model": "iPhone 17 Pro 512GB" },
+      { "rank": 10, "brand": "Samsung", "model": "Galaxy A56 5G 8GB/256GB" },
+      { "rank": 11, "brand": "OPPO", "model": "A6s 6GB/128GB" },
+      { "rank": 12, "brand": "Samsung", "model": "Galaxy S25 FE 5G 8GB/256GB" },
+      { "rank": 13, "brand": "Samsung", "model": "Galaxy A17 8GB/128GB" },
+      { "rank": 14, "brand": "OPPO", "model": "Reno15 12GB/256GB" },
+      { "rank": 15, "brand": "vivo", "model": "Y29s 5G 6GB/128GB" },
+      { "rank": 16, "brand": "Apple", "model": "iPhone 17 512GB" },
+      { "rank": 17, "brand": "vivo", "model": "V60 12GB/256GB" },
+      { "rank": 18, "brand": "Samsung", "model": "Galaxy S25 Ultra 12GB/256GB" },
+      { "rank": 19, "brand": "OPPO", "model": "Reno15 Pro Max 12GB/512GB" },
+      { "rank": 20, "brand": "Samsung", "model": "Galaxy S25+ 12GB/256GB" }
     ],
     "brandShare": [
-      {
-        "brand": "Apple",
-        "share": 40.2,
-        "change": "-5%",
-        "rank": 1
-      },
-      {
-        "brand": "Samsung",
-        "share": 26.2,
-        "change": "+5.4%",
-        "rank": 2
-      },
-      {
-        "brand": "OPPO",
-        "share": 11.9,
-        "change": "-0.6%",
-        "rank": 3
-      },
-      {
-        "brand": "vivo",
-        "share": 6.8,
-        "change": "-0.6%",
-        "rank": 4
-      },
-      {
-        "brand": "Google",
-        "share": 3.8,
-        "change": "+1%",
-        "rank": 5
-      },
-      {
-        "brand": "紅米",
-        "share": 3,
-        "change": "+0.1%",
-        "rank": 6
-      },
-      {
-        "brand": "POCO",
-        "share": 1.8,
-        "change": "-0.1%",
-        "rank": 7
-      },
-      {
-        "brand": "小米",
-        "share": 1.6,
-        "change": "+0.3%",
-        "rank": 8
-      },
-      {
-        "brand": "SHARP",
-        "share": 1.1,
-        "change": "+0.1%",
-        "rank": 9
-      },
-      {
-        "brand": "motorola",
-        "share": 0.9,
-        "change": "+0.1%",
-        "rank": 10
-      }
+      { "brand": "Apple", "share": 40.2, "change": "-5%", "rank": 1 },
+      { "brand": "Samsung", "share": 26.2, "change": "+5.4%", "rank": 2 },
+      { "brand": "OPPO", "share": 11.9, "change": "-0.6%", "rank": 3 },
+      { "brand": "vivo", "share": 6.8, "change": "-0.6%", "rank": 4 },
+      { "brand": "Google", "share": 3.8, "change": "+1%", "rank": 5 },
+      { "brand": "紅米", "share": 3.0, "change": "+0.1%", "rank": 6 },
+      { "brand": "POCO", "share": 1.8, "change": "-0.1%", "rank": 7 },
+      { "brand": "小米", "share": 1.6, "change": "+0.3%", "rank": 8 },
+      { "brand": "SHARP", "share": 1.1, "change": "+0.1%", "rank": 9 },
+      { "brand": "motorola", "share": 0.9, "change": "+0.1%", "rank": 10 }
     ]
   }
 ];

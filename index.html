@@ -1,43 +1,95 @@
 <!DOCTYPE html>
-<html lang="zh-TW">
+<html lang="zh-TW" data-theme="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="台灣每月手機銷售市占排行，資料來源傑昇通信。可查看 Top 10 銷售排行、Android 排行、品牌市占率，並匯出 Excel。">
+  <meta name="description" content="台灣每月手機銷售市占排行，資料來源傑昇通信。可查看 Top 20 銷售排行、Android 排行、品牌市占率趨勢，並匯出 Excel。">
+  <!-- OG Social Preview -->
+  <meta property="og:title" content="台灣手機市占排行">
+  <meta property="og:description" content="每月更新的台灣手機銷售 Top 20 排行與品牌市占率趨勢分析">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="zh_TW">
+  <!-- PWA -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#0a0e1a">
+  <meta name="apple-mobile-web-app-capable" content="yes">
   <title>台灣手機市占排行</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="container">
+  <div class="container" id="captureArea">
     <!-- Header -->
     <header class="header">
-      <h1><span class="header-icon"><svg viewBox="0 0 24 24" fill="currentColor" width="36" height="36"><rect x="5" y="1" width="14" height="22" rx="3" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="19" r="1.2" fill="currentColor"/><line x1="9" y1="4" x2="15" y2="4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg></span> 台灣手機市占排行</h1>
+      <div class="header-row">
+        <h1>
+          <span class="header-icon"><svg viewBox="0 0 24 24" fill="currentColor" width="36" height="36"><rect x="5" y="1" width="14" height="22" rx="3" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="19" r="1.2" fill="currentColor"/><line x1="9" y1="4" x2="15" y2="4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg></span>
+          台灣手機市占排行
+        </h1>
+        <button class="btn-theme" id="themeToggle" title="切換主題">🌙</button>
+      </div>
       <p class="subtitle">資料來源：<a href="https://www.jyes.com.tw/news.php?act=list&cid=22" target="_blank">傑昇通信</a> ｜ 全台實體通路銷售資料匯整</p>
     </header>
+
+    <!-- Stats Cards -->
+    <div class="stats-grid" id="statsGrid">
+      <div class="stat-card">
+        <div class="stat-icon">📱</div>
+        <div class="stat-value" id="statBrands">—</div>
+        <div class="stat-label">上榜品牌數</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon">👑</div>
+        <div class="stat-value" id="statStreak">—</div>
+        <div class="stat-label">連續稱霸</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon">📈</div>
+        <div class="stat-value" id="statGainer">—</div>
+        <div class="stat-label">市占增幅最大</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon">📉</div>
+        <div class="stat-value" id="statLoser">—</div>
+        <div class="stat-label">市占跌幅最大</div>
+      </div>
+    </div>
 
     <!-- Controls -->
     <div class="controls">
       <label for="monthSelect">📅 選擇月份：</label>
       <select id="monthSelect"></select>
+      <input type="text" class="search-input" id="searchInput" placeholder="🔍 搜尋品牌或型號…">
       <button class="btn btn-export" id="btnExport" title="匯出 Excel">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 3v4a1 1 0 001 1h4"/><path d="M17 21H7a2 2 0 01-2-2V5a2 2 0 012-2h7l5 5v11a2 2 0 01-2 2z"/><path d="M9 17l3-3 3 3"/><path d="M12 14v-4"/></svg>
         匯出 Excel
       </button>
+
       <a class="btn btn-source" id="btnSource" href="#" target="_blank">🔗 查看原文</a>
-      <button class="btn btn-edit" id="btnEditUrl" title="編輯原文連結">✏️</button>
     </div>
 
-    <!-- URL 編輯列 -->
-    <div class="url-editor" id="urlEditor" style="display:none;">
-      <label>原文連結：</label>
-      <input type="text" id="urlInput" placeholder="https://www.sogi.com.tw/articles/jyes/...">
-      <button class="btn btn-save" id="btnSaveUrl">儲存</button>
-      <button class="btn btn-cancel" id="btnCancelUrl">取消</button>
+    <!-- Charts Grid -->
+    <div class="grid-2" id="chartsRow">
+      <div class="card">
+        <div class="card-header">
+          <div class="icon cyan">📈</div>
+          <h2>品牌市占趨勢</h2>
+          <span class="badge">近12月</span>
+        </div>
+        <div class="chart-wrap"><canvas id="trendChart"></canvas></div>
+      </div>
+      <div class="card">
+        <div class="card-header">
+          <div class="icon orange">🍩</div>
+          <h2 id="titleDonut">品牌市占分布</h2>
+          <span class="badge">佔比</span>
+        </div>
+        <div class="chart-wrap chart-donut"><canvas id="donutChart"></canvas></div>
+      </div>
     </div>
 
     <!-- Tables Grid -->
     <div class="grid-2">
-      <!-- All Sales Top 10 -->
+      <!-- All Sales -->
       <div class="card" id="cardAll">
         <div class="card-header">
           <div class="icon blue">🏆</div>
@@ -48,17 +100,18 @@
           <table>
             <thead>
               <tr>
-                <th style="width:50px">#</th>
-                <th style="width:80px">品牌</th>
+                <th style="width:44px">#</th>
+                <th style="width:48px">升降</th>
+                <th style="width:100px">品牌</th>
                 <th>型號</th>
               </tr>
             </thead>
             <tbody id="tbodyAll"></tbody>
           </table>
         </div>
+        <button class="btn-expand" id="btnExpandAll">▼ 展開完整 Top 20</button>
       </div>
-
-      <!-- Android Top 10 -->
+      <!-- Android -->
       <div class="card" id="cardAndroid">
         <div class="card-header">
           <div class="icon green">🤖</div>
@@ -69,14 +122,16 @@
           <table>
             <thead>
               <tr>
-                <th style="width:50px">#</th>
-                <th style="width:80px">品牌</th>
+                <th style="width:44px">#</th>
+                <th style="width:48px">升降</th>
+                <th style="width:100px">品牌</th>
                 <th>型號</th>
               </tr>
             </thead>
             <tbody id="tbodyAndroid"></tbody>
           </table>
         </div>
+        <button class="btn-expand" id="btnExpandAndroid">▼ 展開完整排行</button>
       </div>
     </div>
 
@@ -95,8 +150,21 @@
     </p>
   </div>
 
-  <!-- SheetJS for Excel export -->
+  <!-- Model History Modal -->
+  <div class="modal-overlay" id="modelModal" style="display:none">
+    <div class="modal">
+      <div class="modal-header">
+        <h3 id="modalTitle">型號歷史排名</h3>
+        <button class="modal-close" id="modalClose">×</button>
+      </div>
+      <div class="modal-body" id="modalBody"></div>
+    </div>
+  </div>
+
+  <!-- Libraries -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
   <script src="https://cdn.sheetjs.com/xlsx-0.20.3/package/dist/xlsx.full.min.js"></script>
+
   <script src="data.js"></script>
   <script src="app.js"></script>
 </body>

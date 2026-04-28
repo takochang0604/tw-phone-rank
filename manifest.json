@@ -1,0 +1,16 @@
+{
+  "name": "台灣手機市占排行",
+  "short_name": "手機市占",
+  "description": "台灣每月手機銷售 Top 20 排行與品牌市占率趨勢分析",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#0a0e1a",
+  "theme_color": "#0a0e1a",
+  "icons": [
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📱</text></svg>",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}
